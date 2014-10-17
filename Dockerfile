@@ -2,7 +2,7 @@ FROM ubuntu:14.04.1
 
 MAINTAINER Sébastien Lesaint
 
-#
+# install generic dependencies
 RUN apt-get update -yy && sudo apt-get -yy install vim wget
 
 # install Java
@@ -11,3 +11,6 @@ RUN cd ~ && wget --no-check-certificate --no-cookies --header "Cookie: oraclelic
 # install minecraft server
 RUN mkdir ~/minecraft && cd ~/minecraft && echo '#!/bin/bash\
 cd ~/minecraft && ~/jdk/bin/java -jar ~/minecraft/minecraft_server.1.8.jar -Xmx1024M -Xms1024M nogui' > ~/minecraft.sh && chmod +x ~/minecraft.sh
+
+# start Minecraft server
+CMD ~/minecraft.sh
